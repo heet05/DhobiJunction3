@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Dhobi Junction</string>
+    <string name="pickup_drop"><![CDATA[Pickup & Drop]]></string>
+    <string name="Rs">\u20B9</string>
+    <string name="nav_open">OPEN</string>
+    <string name="nav_close">CLOSE</string>
+</resources>

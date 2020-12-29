@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Dashbord_ProductActivity">
+    <Spinner
+        android:layout_marginTop="@dimen/_25sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/Product_spiner1"
+        tools:ignore="MissingConstraints" />
+    <LinearLayout
+        android:layout_below="@id/Product_spiner1"
+        android:id="@+id/linerlayout"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <LinearLayout
+
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/product_select"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select" />
+        <ImageView
+            android:id="@+id/product_iv"
+
+            android:layout_marginStart="@dimen/_50sdp"
+            android:layout_marginVertical="@dimen/_10sdp"
+android:src="@drawable/ic_launcher_background"
+            android:gravity="center"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_marginLeft="@dimen/_50sdp" />
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Product Name" />
+
+        <EditText
+            android:id="@+id/dashboard_pro_e1"
+            android:layout_width="132dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_40sdp"
+            android:layout_marginRight="@dimen/_40sdp"
+            android:layout_weight="2" />
+
+
+    </LinearLayout>
+        <LinearLayout
+
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Product Price" />
+
+            <EditText
+                android:id="@+id/dashboard_pro_e2"
+                android:layout_width="132dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_40sdp"
+                android:layout_marginRight="@dimen/_40sdp"
+                android:layout_weight="2" />
+
+
+        </LinearLayout>
+        <LinearLayout
+
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Product Number " />
+
+            <EditText
+                android:id="@+id/dashboard_pro_e3"
+                android:layout_width="132dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_40sdp"
+                android:layout_marginRight="@dimen/_40sdp"
+                android:layout_weight="2" />
+
+
+        </LinearLayout>
+        <Button
+            android:id="@+id/dashboard_pro_b1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="UPLOAD"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="@dimen/_25sdp"
+        android:layout_width="match_parent"
+        android:layout_below="@id/linerlayout"
+        android:layout_height="match_parent"
+
+        android:id="@+id/Product_spiner2"
+        tools:ignore="MissingConstraints" />
+</RelativeLayout>
