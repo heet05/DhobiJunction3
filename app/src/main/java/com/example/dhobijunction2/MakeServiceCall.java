@@ -1,3 +1,4 @@
+package com.example.dhobijunction2;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -20,8 +21,7 @@ public class MakeServiceCall {
     public static final int POST = 2;
     StringBuilder response;
     URL url;
-    public MakeServiceCall() {
-    }
+
     public String MakeServiceCall(String URLSTR, int type, HashMap<String, String> postDataParams) {
         if (type == GET) {
             try {

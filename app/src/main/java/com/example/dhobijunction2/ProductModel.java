@@ -30,6 +30,15 @@ public class ProductModel {
   public void setImage(String image) {
     Image = image;
   }
+  private String Qty;
+
+  public String getQty() {
+    return Qty;
+  }
+
+  public void setQty(String qty) {
+    Qty = qty;
+  }
 
   private String Image;
   public String getSid() {
@@ -40,13 +49,15 @@ public class ProductModel {
   public ProductModel(){
   }
 
-  public ProductModel(String pid, String title, String price, String kgGm, String sid,String image) {
+  public ProductModel(String pid, String title, String price, String kgGm, String sid,String image,String Qty) {
     this.Pid = pid;
     this.Image=image;
     this.Title = title;
     this.Price = price;
     this.KgGm = kgGm;
     this.Sid = sid;
+    this.Qty=Qty;
+
   }
 
 

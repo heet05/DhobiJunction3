@@ -1,56 +1,39 @@
 package com.example.dhobijunction2.priceEstimator.fragment;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-import com.example.dhobijunction2.CategoryModel;
-import com.example.dhobijunction2.CategoryPagerAdapter;
+import com.example.dhobijunction2.OnAddCartListener;
 import com.example.dhobijunction2.ProductAdapter;
 import com.example.dhobijunction2.ProductListAdapter;
 import com.example.dhobijunction2.ProductModel;
 import com.example.dhobijunction2.SubCategoryModel;
 import com.example.dhobijunction2.databinding.FragmentSubcategoryBinding;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import org.jetbrains.annotations.NotNull;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-public class SubCategoryFragment extends Fragment {
-
+public class SubCategoryFragment extends Fragment implements OnAddCartListener {
+SharedPreferences preferences;
     //private final String product_url = "http://dhobijunction.biz/api/product.php";
     private @NotNull
     FragmentSubcategoryBinding screen;
     private List<ProductModel> product_list =new ArrayList<>();
     private SubCategoryModel model;
     private ProductListAdapter productListAdapter;
+
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     private ProductAdapter adapter;
@@ -63,12 +46,11 @@ public class SubCategoryFragment extends Fragment {
         screen = FragmentSubcategoryBinding.inflate(inflater, container, false);
 
 
-        Query query = db.collection("product").whereEqualTo("Sid",model.getSid());
+        Query query =  db.collection("product").whereEqualTo("Sid",model.getSid());
         FirestoreRecyclerOptions<ProductModel> rvOptions = new FirestoreRecyclerOptions.Builder<ProductModel>()
                 .setQuery(query, ProductModel.class).build();
-        adapter = new ProductAdapter(getActivity(), rvOptions);
+        adapter = new ProductAdapter(getActivity(), rvOptions,this);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        screen.rvProduct.setLayoutManager(layoutManager);
         screen.rvProduct.setAdapter(adapter);
 
         /*
@@ -100,6 +82,12 @@ public class SubCategoryFragment extends Fragment {
     public void onStart() {
         super.onStart();
         adapter.startListening();
+    }
+
+
+    @Override
+    public void addToCart(ProductModel model, String s) {
+        
     }
 }
 

@@ -1,7 +1,5 @@
 package com.example.dhobijunction2;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -10,12 +8,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.hbb20.CountryCodePicker;
 
 public class RegisterActivity extends AppCompatActivity {
     private CountryCodePicker countryCodePicker;
     private EditText number;
     private Button next;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +26,13 @@ public class RegisterActivity extends AppCompatActivity {
         number = findViewById(R.id.editText_carrierNumber);
         next = findViewById(R.id.next);
         countryCodePicker.registerCarrierNumberEditText(number);
+// Package name for the Chrome channel the client wants to connect to. This
+// depends on the channel name.
+// Stable = com.android.chrome
+// Beta = com.chrome.beta
+// Dev = com.chrome.dev
+       
+
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
