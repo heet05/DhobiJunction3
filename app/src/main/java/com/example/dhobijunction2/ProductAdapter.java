@@ -16,6 +16,8 @@ import com.bumptech.glide.Glide;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
+
+
 public class ProductAdapter extends FirestoreRecyclerAdapter<ProductModel, ProductAdapter.ProductViewHolder> {
     FirestoreRecyclerOptions<ProductModel> rvOptions;
     OnAddCartListener listener;

@@ -26,12 +26,7 @@ public class RegisterActivity extends AppCompatActivity {
         number = findViewById(R.id.editText_carrierNumber);
         next = findViewById(R.id.next);
         countryCodePicker.registerCarrierNumberEditText(number);
-// Package name for the Chrome channel the client wants to connect to. This
-// depends on the channel name.
-// Stable = com.android.chrome
-// Beta = com.chrome.beta
-// Dev = com.chrome.dev
-       
+
 
 
         next.setOnClickListener(new View.OnClickListener() {
