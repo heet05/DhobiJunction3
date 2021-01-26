@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
-import com.example.dhobijunction2.R;
+import com.example.dhobijunction.R;
 
 
 public class ContactUsActivity extends AppCompatActivity {

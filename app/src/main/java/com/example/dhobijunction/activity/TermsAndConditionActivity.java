@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.dhobijunction2.R;
+import com.example.dhobijunction.R;
 
 public class TermsAndConditionActivity extends AppCompatActivity {
 

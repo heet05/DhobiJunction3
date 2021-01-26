@@ -16,7 +16,7 @@ import androidx.fragment.app.Fragment;
 import com.example.dhobijunction.fragment.CartFragment;
 import com.example.dhobijunction.fragment.HomeFragment;
 import com.example.dhobijunction.fragment.OrderFragment;
-import com.example.dhobijunction2.R;
+import com.example.dhobijunction.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 

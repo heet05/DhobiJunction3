@@ -19,7 +19,7 @@ import com.example.dhobijunction.model.CartModel;
 import com.example.dhobijunction.model.ProModel;
 import com.example.dhobijunction.model.ProductModel;
 import com.example.dhobijunction.model.SubCategoryModel;
-import com.example.dhobijunction2.R;
+import com.example.dhobijunction.R;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;

@@ -9,7 +9,7 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.dhobijunction2.R;
+import com.example.dhobijunction.R;
 
 
 public class SplashActivity extends AppCompatActivity {

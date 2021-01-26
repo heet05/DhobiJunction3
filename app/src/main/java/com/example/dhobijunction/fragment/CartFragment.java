@@ -19,7 +19,7 @@ import com.example.dhobijunction.activity.OffersActivity;
 import com.example.dhobijunction.adapter.CartAdapter;
 import com.example.dhobijunction.adapter.OnQtyUpdate;
 import com.example.dhobijunction.model.CartModel;
-import com.example.dhobijunction2.R;
+import com.example.dhobijunction.R;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;

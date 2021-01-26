@@ -12,7 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.dhobijunction.activity.ProductActivity;
-import com.example.dhobijunction2.R;
+import com.example.dhobijunction.R;
 
 
 public class HomeFragment extends Fragment {

@@ -7,7 +7,7 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.dhobijunction2.R;
+import com.example.dhobijunction.R;
 
 
 public class forgotpasswordActivity extends AppCompatActivity {

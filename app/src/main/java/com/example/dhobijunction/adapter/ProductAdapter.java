@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.dhobijunction.fragment.ProductFragment;
 import com.example.dhobijunction.model.ProModel;
-import com.example.dhobijunction2.R;
+import com.example.dhobijunction.R;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 

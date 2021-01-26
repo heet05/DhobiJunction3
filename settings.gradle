@@ -1,4 +1,4 @@
 include ':delivery_boy'
 include ':admin'
 include ':app'
-rootProject.name = "DhobiJunction2"
+rootProject.name = "DhobiJunction"

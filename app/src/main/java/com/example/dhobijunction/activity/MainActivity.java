@@ -8,13 +8,13 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.dhobijunction2.R;
-import com.example.dhobijunction2.databinding.ActivityMainBinding;
+import com.example.dhobijunction.R;
+import com.example.dhobijunction.databinding.ActivityMainBinding;
 
 
 public class MainActivity extends AppCompatActivity {
 
-    ActivityMainBinding screen;
+   ActivityMainBinding screen;
     ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

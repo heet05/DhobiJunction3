@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.dhobijunction2.R;
+import com.example.dhobijunction.R;
 
 
 public class OrderFragment extends Fragment {

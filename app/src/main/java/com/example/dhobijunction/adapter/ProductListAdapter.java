@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.dhobijunction.model.ProductModel;
-import com.example.dhobijunction2.R;
+import com.example.dhobijunction.R;
 
 import java.util.List;
 

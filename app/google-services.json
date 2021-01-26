@@ -8,12 +8,20 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1062496683657:android:9f19888d3628f247cba858",
+        "mobilesdk_app_id": "1:1062496683657:android:cd998d637da1b663cba858",
         "android_client_info": {
-          "package_name": "com.example.dhobijunction"
+          "package_name": "com.example.admin"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "1062496683657-91e3sj89fpkfikhtbatfdoh11je94hm6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.admin",
+            "certificate_hash": "436a48e5c6b933906dc4a85a0377532e58f1ac74"
+          }
+        },
         {
           "client_id": "1062496683657-idk7047nt6r00cln5v3a3e9fvdod9itb.apps.googleusercontent.com",
           "client_type": 3
@@ -37,17 +45,54 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1062496683657:android:0a6c524495486726cba858",
+        "mobilesdk_app_id": "1:1062496683657:android:5df7deb2ddb2ffffcba858",
         "android_client_info": {
-          "package_name": "com.example.dhobijunction2"
+          "package_name": "com.example.delivery_boy"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1062496683657-n04idi0j75m6vkm4v9er2t5urf97mtv7.apps.googleusercontent.com",
+          "client_id": "1062496683657-99gk64l3ffta5b1kls434hr7u6a7lj5l.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.dhobijunction2",
+            "package_name": "com.example.delivery_boy",
+            "certificate_hash": "0e0c93d062192af8133e7899179e9133261a925d"
+          }
+        },
+        {
+          "client_id": "1062496683657-idk7047nt6r00cln5v3a3e9fvdod9itb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMufyeuS5RlytoW-ulL43xOXJUOBQuFjo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1062496683657-idk7047nt6r00cln5v3a3e9fvdod9itb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1062496683657:android:d7b248500c6e8317cba858",
+        "android_client_info": {
+          "package_name": "com.example.dhobijunction"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1062496683657-pogb8i2aeombpt3eqcqtgp1s8tpgobak.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.dhobijunction",
             "certificate_hash": "0e0c93d062192af8133e7899179e9133261a925d"
           }
         },

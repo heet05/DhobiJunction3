@@ -10,7 +10,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.dhobijunction.adapter.CategoryPagerAdapter;
 import com.example.dhobijunction.model.CategoryModel;
-import com.example.dhobijunction2.R;
+import com.example.dhobijunction.R;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
