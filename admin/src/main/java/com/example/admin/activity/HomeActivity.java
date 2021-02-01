@@ -1,8 +1,10 @@
-package com.example.admin;
+package com.example.admin.activity;
+
+import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
+import com.example.admin.R;
 
 public class HomeActivity extends AppCompatActivity {
 

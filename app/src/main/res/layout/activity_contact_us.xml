@@ -28,7 +28,7 @@
             android:textColor="@android:color/holo_blue_light"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Faizan Shaikh"/>
+            android:text="Heet Vadecha"/>
 
         <TextView
             android:id="@+id/txt_call"
@@ -37,7 +37,7 @@
             android:layout_marginTop="20dp"
             android:drawableLeft="@drawable/ic_baseline_call_1_24"
             android:textColor="@android:color/holo_blue_light"
-            android:text="+91 7405719399"
+            android:text="+91 8780272970"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -50,7 +50,7 @@
             android:textColor="@android:color/holo_blue_light"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="faizanshaikh654933@gmail.com"/>
+            android:text="heetvadecha05@gmail.com"/>
 
         <TextView
             android:id="@+id/txt_website"
@@ -70,7 +70,7 @@
             android:layout_marginTop="20dp"
             android:textColor="@android:color/holo_blue_light"
             android:textSize="18sp"
-            android:text="4,Rangbhavan Soc.,Nr Puran Flat Maniyasa Maninagar,(East) Ahmedabad 380008"
+            android:text="13,kirtiMandrid Soc.,Nr jamine flat Chandernager, Ahmedabad 380007"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         </LinearLayout>

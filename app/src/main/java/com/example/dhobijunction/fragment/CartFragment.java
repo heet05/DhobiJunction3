@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,11 +16,12 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.dhobijunction.activity.CheckoutActivity;
+import com.example.dhobijunction.R;
 import com.example.dhobijunction.activity.OffersActivity;
 import com.example.dhobijunction.adapter.CartAdapter;
 import com.example.dhobijunction.adapter.OnQtyUpdate;
 import com.example.dhobijunction.model.CartModel;
-import com.example.dhobijunction.R;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -38,18 +40,18 @@ public class CartFragment extends Fragment implements OnQtyUpdate {
     CartModel model;
     SharedPreferences pref;
     TextView t1, t6;
+    Button button1;
     String mobile = "";
-    int total = 0;
     boolean isQtyUpdated;
 
 
-    public CartFragment() {
-    }
 
+    public CartFragment() {
+
+    }
     public CartFragment(CartModel CartModel) {
         this.model = CartModel;
     }
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -58,7 +60,7 @@ public class CartFragment extends Fragment implements OnQtyUpdate {
         recyclerView = view.findViewById(R.id.cart_recyclerview);
         t1 = view.findViewById(R.id.cart_tv1);
         t6 = view.findViewById(R.id.cart_tv6);
-
+        button1=view.findViewById(R.id.cart_Bt1);
         pref = getContext().getSharedPreferences("Users", 0);
         mobile = pref.getString("userMobile", "");
         Query query = FirebaseFirestore.getInstance().collection("USERS")
@@ -80,6 +82,13 @@ public class CartFragment extends Fragment implements OnQtyUpdate {
             }
         });
         getCartTotal();
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getActivity(),CheckoutActivity.class);
+                startActivity(intent);
+            }
+        });
         return view;
     }
 
@@ -90,12 +99,14 @@ public class CartFragment extends Fragment implements OnQtyUpdate {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                 if (value != null && !value.isEmpty()) {
+                    int total=0;
+
                     for (int i = 0; i < value.size(); i++) {
+                      //  int sum=Integer.parseInt(value.getDocuments().get(i).get("price").toString()) * Integer.parseInt(value.getDocuments().get(i).get("qty").toString());
+                        total += Integer.parseInt(value.getDocuments().get(i).get("total").toString());
 
-                       total += Integer.parseInt(value.getDocuments().get(i).get("price").toString()) * Integer.parseInt(value.getDocuments().get(i).get("qty").toString());
-
+                        t6.setText(String.valueOf(total));
                     }
-                    t6.setText(String.valueOf(total));
                 }
             }
         });

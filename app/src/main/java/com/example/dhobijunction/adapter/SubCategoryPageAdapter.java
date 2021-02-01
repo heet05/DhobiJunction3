@@ -32,6 +32,6 @@ public class SubCategoryPageAdapter extends FragmentPagerAdapter {
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
-        return list.get(position).getTitle();
+        return list.get(position).getTITLE();
     }
 }

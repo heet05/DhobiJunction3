@@ -11,15 +11,14 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.dhobijunction.R;
 import com.example.dhobijunction.adapter.SubCategoryPageAdapter;
 import com.example.dhobijunction.model.CategoryModel;
 import com.example.dhobijunction.model.SubCategoryModel;
-import com.example.dhobijunction.R;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -45,8 +44,8 @@ public class SubCategoryFragment extends Fragment {
         viewPager=view.findViewById(R.id.vp);
         tabLayout=view.findViewById(R.id.tl);
 
-        FirebaseFirestore.getInstance().collection("SUB_CATEGORY")
-                .whereEqualTo("cId",model.getcId()).orderBy("sId", Query.Direction.ASCENDING).addSnapshotListener(new EventListener<QuerySnapshot>() {
+        FirebaseFirestore.getInstance().collection("subcategory")
+                .whereEqualTo("Cid",model.getCid()).orderBy("Sid").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
 

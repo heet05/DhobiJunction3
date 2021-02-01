@@ -2,23 +2,25 @@ package com.example.dhobijunction.model;
 
 public class CategoryModel {
 
-        String cId;
 
-        String title;
 
-        public String getcId() {
-                return cId;
+        String Cid;
+
+        String TITLE;
+
+        public String getCid() {
+                return Cid;
         }
 
-        public void setcId(String cId) {
-                this.cId = cId;
+        public void setCid(String cid) {
+                Cid = cid;
         }
 
-        public String getTitle() {
-                return title;
+        public String getTITLE() {
+                return TITLE;
         }
 
-        public void setTitle(String title) {
-                this.title = title;
+        public void setTITLE(String TITLE) {
+                this.TITLE = TITLE;
         }
 }

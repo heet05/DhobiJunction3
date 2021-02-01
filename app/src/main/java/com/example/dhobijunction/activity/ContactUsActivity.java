@@ -32,7 +32,7 @@ public class ContactUsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent callIntent = new Intent(Intent.ACTION_CALL);
-                callIntent.setData(Uri.parse("tel:7405719399"));
+                callIntent.setData(Uri.parse("tel:8780272970"));
                 if (ActivityCompat.checkSelfPermission(ContactUsActivity.this,
                         Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                     return;

@@ -52,8 +52,8 @@ public class ProductFragment extends Fragment implements OnAddToCartListner {
 
         preferences = getActivity().getSharedPreferences("Users", 0);
 
-        Query query = FirebaseFirestore.getInstance().collection("PRODUCTS")
-                .whereEqualTo("sId", model.getsId());
+        Query query = FirebaseFirestore.getInstance().collection("product")
+                .whereEqualTo("Sid", model.getSid());
 
         FirestoreRecyclerOptions<ProModel> rvOptions = new FirestoreRecyclerOptions.Builder<ProModel>()
                 .setQuery(query, ProModel.class).build();
@@ -120,9 +120,9 @@ public class ProductFragment extends Fragment implements OnAddToCartListner {
         model.setQty(proQty);
         model.setTitle(product.getTitle());
         model.setPrice(product.getPrice());
-        model.setpId(product.getpId());
+        model.setpId(product.getPid());
         model.setImage(product.getImage());
-        model.setsId(product.getsId());
+        model.setsId(product.getSid());
         model.setTotal(String.valueOf(Integer.parseInt(product.getPrice()) * Integer.parseInt(proQty)));
 
         FirebaseFirestore.getInstance().collection("USERS")

@@ -52,7 +52,7 @@ public class CartAdapter extends FirestoreRecyclerAdapter<CartModel, CartAdapter
             @Override
             public void onClick(View view) {
                 holder.cart_update.setVisibility(View.GONE);
-                holder.cart_remove.setVisibility(View.GONE);
+                holder.cart_remove.setVisibility(View.GONE);    
                 holder.cart_number.setVisibility(View.GONE);
                 holder.cart_add.setVisibility(View.GONE);
                 holder.cart_edit.setVisibility(View.VISIBLE);

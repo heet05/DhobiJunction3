@@ -1,26 +1,26 @@
 package com.example.dhobijunction.model;
 
 public class SubCategoryModel {
+String Sid;
+String TITLE;
 
 
-    public String getsId() {
-        return sId;
+
+
+
+    public String getSid() {
+        return Sid;
     }
 
-    public void setsId(String sId) {
-        this.sId = sId;
+    public void setSid(String sid) {
+        Sid = sid;
     }
 
-    String sId;
-
-
-    String title;
-
-    public String getTitle() {
-        return title;
+    public String getTITLE() {
+        return TITLE;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setTITLE(String TITLE) {
+        this.TITLE = TITLE;
     }
 }

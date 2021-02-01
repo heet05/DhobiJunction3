@@ -2,47 +2,53 @@ package com.example.dhobijunction.model;
 
 public class ProModel {
 
-    String title,sId,image,price,pId;
+    String Pid,Image,KgGm,Price,Sid,Title;
 
-    public String getpId() {
-        return pId;
+    public String getPid() {
+        return Pid;
     }
 
-    public void setpId(String pId) {
-        this.pId = pId;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public void setsId(String sId) {
-        this.sId = sId;
+    public void setPid(String pid) {
+        Pid = pid;
     }
 
     public String getImage() {
-        return image;
+        return Image;
     }
 
     public void setImage(String image) {
-        this.image = image;
+        Image = image;
+    }
+
+    public String getKgGm() {
+        return KgGm;
+    }
+
+    public void setKgGm(String kgGm) {
+        KgGm = kgGm;
     }
 
     public String getPrice() {
-        return price;
+        return Price;
     }
 
     public void setPrice(String price) {
-        this.price = price;
+        Price = price;
     }
 
-    public ProModel(){}
+    public String getSid() {
+        return Sid;
+    }
+
+    public void setSid(String sid) {
+        Sid = sid;
+    }
 
     public String getTitle() {
-        return title;
+        return Title;
     }
 
-    public String getsId() {
-        return sId;
+    public void setTitle(String title) {
+        Title = title;
     }
 }
