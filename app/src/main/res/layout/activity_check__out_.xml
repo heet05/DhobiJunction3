@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.CheckoutActivity">
+    tools:context=".activity.Check_Out_Activity">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -21,9 +21,9 @@
             android:layout_height="wrap_content"/>
         <View
             android:id="@+id/checkout_line"
-            android:layout_below="@id/checkout_tv1"
-            android:background="@android:color/darker_gray"
-            android:layout_width="match_parent"
+        android:layout_below="@id/checkout_tv1"
+        android:background="@android:color/darker_gray"
+        android:layout_width="match_parent"
             android:layout_height="1dp"/>
 
         <TextView
@@ -86,6 +86,7 @@
                     android:id="@+id/checkout_promocode"
                     android:layout_below="@id/checkout_mobilenumber"
                     android:hint="Discount Coupon"
+                    android:visibility="gone"
                     android:layout_marginTop="10dp"
                     android:layout_marginHorizontal="20dp"
                     android:layout_width="match_parent"
@@ -130,15 +131,14 @@
                         android:textColor="@android:color/black"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                    <TextView
+                    <Spinner
                         android:layout_weight="3"
-                        android:id="@+id/checkout_tv4"
-                        android:textAlignment="textEnd"
-                        android:text="ASAP"
-                        android:textSize="18sp"
+                        android:id="@+id/checkout_Spinner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="end" />
+                        android:layout_gravity="center"
+                        android:gravity="start"
+                        />
                 </LinearLayout>
                 <LinearLayout
                     android:id="@+id/checkout_linearlayout2"
@@ -184,9 +184,11 @@
             android:layout_marginTop="10dp"
             android:layout_below="@id/checkout_tv6"
             android:layout_width="match_parent"
+            android:id="@+id/cardView"
             android:layout_height="wrap_content">
             <androidx.cardview.widget.CardView
                 android:layout_marginTop="5dp"
+
                 android:layout_marginHorizontal="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -198,5 +200,20 @@
                 </androidx.recyclerview.widget.RecyclerView>
             </androidx.cardview.widget.CardView>
         </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_below="@id/cardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:background="@android:color/holo_blue_bright"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Payment"
+                />
+
+        </RelativeLayout>
     </RelativeLayout>
+
+
 </ScrollView>

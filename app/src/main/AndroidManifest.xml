@@ -15,7 +15,9 @@
         android:roundIcon="@mipmap/dhobijunction"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.CheckoutActivity"></activity>
+        <activity android:name=".activity.PaymentActivity"></activity>
+        <activity android:name=".activity.Check_Out_Activity" />
+        <activity android:name=".activity.Check_OutActivity" />
         <activity android:name=".activity.ProductActivity" />
         <activity android:name=".activity.TermsAndConditionActivity" />
         <activity android:name=".activity.AboutUsActivity" />
@@ -23,7 +25,7 @@
         <activity android:name=".activity.OffersActivity" />
         <activity
             android:name=".activity.BottomActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,7 +35,7 @@
         </activity>
         <activity android:name=".activity.RegistrationActivity" />
         <activity android:name=".activity.forgotpasswordActivity" />
-        <activity android:name=".activity.MainActivity"></activity>
+        <activity android:name=".activity.MainActivity" />
     </application>
 
 </manifest>

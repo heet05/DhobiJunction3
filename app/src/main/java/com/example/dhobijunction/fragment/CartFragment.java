@@ -16,8 +16,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.dhobijunction.activity.CheckoutActivity;
 import com.example.dhobijunction.R;
+import com.example.dhobijunction.activity.Check_Out_Activity;
 import com.example.dhobijunction.activity.OffersActivity;
 import com.example.dhobijunction.adapter.CartAdapter;
 import com.example.dhobijunction.adapter.OnQtyUpdate;
@@ -85,7 +85,7 @@ public class CartFragment extends Fragment implements OnQtyUpdate {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getActivity(),CheckoutActivity.class);
+                Intent intent=new Intent(getActivity(), Check_Out_Activity.class);
                 startActivity(intent);
             }
         });
