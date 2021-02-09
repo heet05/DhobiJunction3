@@ -37,7 +37,8 @@ Check_out_Adapter adapter;
 
         getSupportActionBar().hide();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        pref = getSharedPreferences("Users", 0);
+        mobile = pref.getString("userMobile", "");
         List<String> timelist = new ArrayList<>(Arrays.asList(time));
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, timelist);
         screen.checkoutSpinner.setAdapter(spinnerArrayAdapter);
@@ -58,12 +59,23 @@ Check_out_Adapter adapter;
         FirestoreRecyclerOptions<CheckModel> rvOptions = new FirestoreRecyclerOptions.Builder<CheckModel>()
                 .setQuery(query, CheckModel.class).build();
 
-        pref = getSharedPreferences("Users", 0);
-        mobile = pref.getString("userMobile", "");
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        screen.cartRecyclerview.setLayoutManager(linearLayoutManager);
-       adapter = new Check_out_Adapter(this, rvOptions, this);
-      screen.cartRecyclerview.setAdapter(adapter);
 
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        screen.checkRecyclerview.setLayoutManager(linearLayoutManager);
+       adapter = new Check_out_Adapter(this, rvOptions, this);
+      screen.checkRecyclerview.setAdapter(adapter);
+
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        adapter.startListening();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        adapter.stopListening();
     }
 }

@@ -9,15 +9,7 @@ public class CheckModel {
     String pId;
     String cartItemId;
 
-    public CheckModel(String image, String price, String title, String sId, String qty, String pId, String cartItemId) {
-        this.image = image;
-        this.price = price;
-        this.title = title;
-        this.sId = sId;
-        this.qty = qty;
-        this.pId = pId;
-        this.cartItemId = cartItemId;
-    }
+
 
     public String getImage() {
         return image;

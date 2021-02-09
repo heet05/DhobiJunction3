@@ -4,10 +4,13 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.dhobijunction.R;
 import com.example.dhobijunction.activity.Check_Out_Activity;
 import com.example.dhobijunction.model.CheckModel;
@@ -34,6 +37,10 @@ public class Check_out_Adapter extends FirestoreRecyclerAdapter<CheckModel,Check
 
     @Override
     protected void onBindViewHolder(@NonNull CheckViewHolder holder, int position, @NonNull CheckModel model) {
+        holder.textView1.setText(model.getTitle());
+        Glide.with(check_out_activity).load(model.getImage()).into(holder.imageView);
+        holder.textView2.setText(" ₹ " + model.getPrice());
+
 
     }
 
@@ -45,8 +52,13 @@ public class Check_out_Adapter extends FirestoreRecyclerAdapter<CheckModel,Check
     }
 
     public class CheckViewHolder extends RecyclerView.ViewHolder {
+        ImageView imageView;
+        TextView textView1,textView2;
         public CheckViewHolder(@NonNull View itemView) {
             super(itemView);
+            imageView=itemView.findViewById(R.id.check_image);
+            textView1=itemView.findViewById(R.id.check_name);
+            textView2=itemView.findViewById(R.id.Check_price);
         }
     }
 }
