@@ -4,8 +4,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
-import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,18 +13,19 @@ import com.example.dhobijunction.R;
 
 
 public class SplashActivity extends AppCompatActivity {
-    ImageView imageView;
+
     SharedPreferences preferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        imageView = findViewById(R.id.splash_image);
+
         AlphaAnimation animation = new AlphaAnimation(0,1);
-        //animation.setRepeatCount(4);
+       // animation.setRepeatCount(4);
         animation.setDuration(500);
         getSupportActionBar().hide();
-        imageView.startAnimation(animation);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+       // imageView.startAnimation(animation);
         preferences = getApplicationContext().getSharedPreferences("Users",0);
         new Handler().postDelayed(new Runnable() {
             @Override

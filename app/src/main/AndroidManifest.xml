@@ -17,7 +17,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".activity.PaymentActivity"></activity>
         <activity android:name=".activity.Check_Out_Activity" />
-        <activity android:name=".activity.Check_OutActivity" />
+
         <activity android:name=".activity.ProductActivity" />
         <activity android:name=".activity.TermsAndConditionActivity" />
         <activity android:name=".activity.AboutUsActivity" />

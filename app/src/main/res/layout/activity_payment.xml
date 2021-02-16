@@ -5,23 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.PaymentActivity">
-    <RadioGroup
-        android:layout_width="match_parent"
-        android:padding="@dimen/_25sdp"
-        android:layout_height="match_parent">
-        <RadioButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/_10sdp"
-            android:text="Cash On Delivery"
-            android:id="@+id/cash"/>
-        <RadioButton
-            android:layout_marginTop="@dimen/_25sdp"
-            android:padding="@dimen/_10sdp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Online Payment"
-            android:id="@+id/online"/>
-    </RadioGroup>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
