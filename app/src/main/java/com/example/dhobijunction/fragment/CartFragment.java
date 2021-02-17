@@ -86,6 +86,7 @@ public class CartFragment extends Fragment implements OnQtyUpdate {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(getActivity(), Check_Out_Activity.class);
+                intent.putExtra("total",t6.getText().toString());
                 startActivity(intent);
             }
         });
