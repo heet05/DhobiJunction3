@@ -10,47 +10,49 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.dhobijunction.R;
-import com.example.dhobijunction.activity.OrderDetaliActivity;
-import com.example.dhobijunction.model.OrderModel;
-import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
-import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.example.dhobijunction.model.CheckModel;
 
-public class OrderDetaliAdapter extends FirestoreRecyclerAdapter<OrderModel,OrderDetaliAdapter.OrderDetailViewHolder> {
-    /**
-     * Create a new RecyclerView adapter that listens to a Firestore Query.  See {@link
-     * FirestoreRecyclerOptions} for configuration options.
-     *
-     * @param orderDetaliActivity
-     * @param options
-     * @param detaliActivity
-     */
+import java.util.List;
+
+public class OrderDetaliAdapter extends RecyclerView.Adapter<OrderDetaliAdapter.ViewHolder> {
+    List<CheckModel>list;
     Context context;
-    public OrderDetaliAdapter(OrderDetaliActivity orderDetaliActivity, @NonNull FirestoreRecyclerOptions<OrderModel> options, OrderDetaliActivity detaliActivity) {
-        super(options);
-        this.context=orderDetaliActivity;
-    }
 
-    @Override
-    protected void onBindViewHolder(@NonNull OrderDetailViewHolder holder, int position, @NonNull OrderModel model) {
 
+    public OrderDetaliAdapter(    Context context,List<CheckModel> list) {
+        this.list=list;
+        this.context=context;
     }
 
     @NonNull
     @Override
-    public OrderDetailViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.order_detali_list,parent,false);
-        return new OrderDetailViewHolder(view);
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.order_main_details,parent,false);
+        return new ViewHolder(view);
     }
 
-    public class OrderDetailViewHolder extends RecyclerView.ViewHolder {
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        holder.title.setText(list.get(position).getTitle());
+        holder.price.setText(list.get(position).getPrice());
+        Glide.with(context).load(list.get(position).getImage()).into(holder.imageView);
+    }
+
+    @Override
+    public int getItemCount() {
+        return list.size();
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        TextView title,price;
         ImageView imageView;
-        TextView titel,price;
-        public OrderDetailViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageView=itemView.findViewById(R.id.Order_detail_image);
-            titel=itemView.findViewById(R.id.Order_detail_title);
-            price=itemView.findViewById(R.id.Order_detail_price);
+            title=itemView.findViewById(R.id.Order_Mdetail_title);
+            price=itemView.findViewById(R.id.Order_Mdetail_price);
+            imageView=itemView.findViewById(R.id.Order_Mdetail_image);
         }
     }
 }
