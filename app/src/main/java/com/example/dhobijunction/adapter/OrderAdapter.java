@@ -19,7 +19,9 @@ import com.example.dhobijunction.model.OrderModel;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
-public class OrderAdapter extends FirestoreRecyclerAdapter<OrderModel,OrderAdapter.OrderViewHolder> {
+import java.text.SimpleDateFormat;
+
+public class OrderAdapter extends FirestoreRecyclerAdapter<OrderModel, OrderAdapter.OrderViewHolder> {
     /**
      * Create a new RecyclerView adapter that listens to a Firestore Query.  See {@link
      * FirestoreRecyclerOptions} for configuration options.
@@ -29,20 +31,24 @@ public class OrderAdapter extends FirestoreRecyclerAdapter<OrderModel,OrderAdapt
      * @param orderFragment
      */
     Context context;
+
     public OrderAdapter(FragmentActivity activity, @NonNull FirestoreRecyclerOptions<OrderModel> options, OrderFragment orderFragment) {
         super(options);
-        this.context=activity;
+        this.context = activity;
     }
 
     @Override
     protected void onBindViewHolder(@NonNull OrderViewHolder holder, int position, @NonNull OrderModel model) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
         holder.textView.setText(model.getTotal());
-        holder.date.setText(String.valueOf(model.getTimestamp()));
+        holder.date.setText(sdf.format(model.getTimestamp()));
+
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(context, OrderDetaliActivity.class);
-                intent.putExtra("Model",OrderModel.class);
+                Intent intent = new Intent(context, OrderDetaliActivity.class);
+                intent.putExtra("Model", model);
                 context.startActivity(intent);
             }
         });
@@ -56,13 +62,14 @@ public class OrderAdapter extends FirestoreRecyclerAdapter<OrderModel,OrderAdapt
     }
 
     public class OrderViewHolder extends RecyclerView.ViewHolder {
-        TextView textView,date;
+        TextView textView, date;
         LinearLayout linearLayout;
+
         public OrderViewHolder(@NonNull View itemView) {
             super(itemView);
-            date=itemView.findViewById(R.id.Order_date);
-            textView=itemView.findViewById(R.id.Order_total);
-            linearLayout=itemView.findViewById(R.id.Order_click);
+            date = itemView.findViewById(R.id.Order_date);
+            textView = itemView.findViewById(R.id.Order_total);
+            linearLayout = itemView.findViewById(R.id.Order_click);
         }
     }
 }

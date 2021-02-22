@@ -17,19 +17,19 @@ import com.example.dhobijunction.model.CheckModel;
 import java.util.List;
 
 public class OrderDetaliAdapter extends RecyclerView.Adapter<OrderDetaliAdapter.ViewHolder> {
-    List<CheckModel>list;
+    List<CheckModel> list;
     Context context;
 
 
-    public OrderDetaliAdapter(    Context context,List<CheckModel> list) {
-        this.list=list;
-        this.context=context;
+    public OrderDetaliAdapter(Context context, List<CheckModel> list) {
+        this.list = list;
+        this.context = context;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.order_main_details,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.order_main_details, parent, false);
         return new ViewHolder(view);
     }
 
@@ -46,13 +46,14 @@ public class OrderDetaliAdapter extends RecyclerView.Adapter<OrderDetaliAdapter.
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView title,price;
+        TextView title, price;
         ImageView imageView;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            title=itemView.findViewById(R.id.Order_Mdetail_title);
-            price=itemView.findViewById(R.id.Order_Mdetail_price);
-            imageView=itemView.findViewById(R.id.Order_Mdetail_image);
+            title = itemView.findViewById(R.id.Order_Mdetail_title);
+            price = itemView.findViewById(R.id.Order_Mdetail_price);
+            imageView = itemView.findViewById(R.id.Order_Mdetail_image);
         }
     }
 }

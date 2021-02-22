@@ -17,6 +17,8 @@ import com.payumoney.sdkui.ui.utils.PayUmoneyFlowManager;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class PaymentActivity extends AppCompatActivity {
     String key = "bvSxHJki";
@@ -32,15 +34,16 @@ public class PaymentActivity extends AppCompatActivity {
     OrderModel orderModel;
     SharedPreferences preferences;
     private static final String TAG = "PaymentActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
         getSupportActionBar().hide();
-        amount=getIntent().getStringExtra("total");
+        amount = getIntent().getStringExtra("total");
         preferences = getSharedPreferences("Users", 0);
         userMobile = preferences.getString("userMobile", "");
-        orderModel= (OrderModel) getIntent().getSerializableExtra("order");
+        orderModel = (OrderModel) getIntent().getSerializableExtra("order");
         String hashSequence = key + "|" + txnid + "|" + amount + "|" + productinfo + "|" + firstname + "|" + email + "|||||||||||" + salt;
         serverCalculatedHash = hashCal("SHA-512", hashSequence);
 
@@ -107,23 +110,27 @@ public class PaymentActivity extends AppCompatActivity {
         // Result Code is -1 send from Payumoney activity
         Log.d(TAG, "request code " + requestCode + " resultcode " + resultCode);
         if (requestCode == PayUmoneyFlowManager.REQUEST_CODE_PAYMENT && resultCode == RESULT_OK && data != null) {
-            TransactionResponse transactionResponse = data.getParcelableExtra( PayUmoneyFlowManager.INTENT_EXTRA_TRANSACTION_RESPONSE );
+            TransactionResponse transactionResponse = data.getParcelableExtra(PayUmoneyFlowManager.INTENT_EXTRA_TRANSACTION_RESPONSE);
 
             if (transactionResponse != null && transactionResponse.getPayuResponse() != null) {
 
-                if(transactionResponse.getTransactionStatus().equals( TransactionResponse.TransactionStatus.SUCCESSFUL )){
+                if (transactionResponse.getTransactionStatus().equals(TransactionResponse.TransactionStatus.SUCCESSFUL)) {
                     FirebaseFirestore.getInstance().collection("USERS").document(userMobile).collection("ORDERS")
-                            .add(orderModel).addOnCompleteListener(task -> {
-                                if (task.isSuccessful()){
-                                    Toast.makeText(this, "Order Success", Toast.LENGTH_SHORT).show();
-                                }else{
-                                    Toast.makeText(this, ""+task.getException(), Toast.LENGTH_SHORT).show();
-                                }
+                            .add(orderModel).addOnSuccessListener(doc -> {
+                        Map<String, Object> map = new HashMap<>();
+                        map.put("orderId", doc.getId());
+                        doc.update(map).addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
+                                map.clear();
+                                Toast.makeText(this, "Order Success", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(this, "" + task.getException(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
                     });
-                } else{
+                } else {
                     Toast.makeText(this, "TRansaction Failed", Toast.LENGTH_SHORT).show();
                 }
-
                 // Response from Payumoney
                 String payuResponse = transactionResponse.getPayuResponse();
 

@@ -33,6 +33,7 @@ Check_out_Adapter adapter;
     String total="";
     List<CheckModel> list;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +48,13 @@ Check_out_Adapter adapter;
         mobile = pref.getString("userMobile", "");
         List<String> timelist = new ArrayList<>(Arrays.asList(time));
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, timelist);
+        screen.checkoutSpinner.setAdapter(spinnerArrayAdapter);
+        screen.tvCurrentLoction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+            }
+        });
         screen.payment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

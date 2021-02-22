@@ -44,8 +44,6 @@ public class CartFragment extends Fragment implements OnQtyUpdate {
     String mobile = "";
     boolean isQtyUpdated;
 
-
-
     public CartFragment() {
 
     }

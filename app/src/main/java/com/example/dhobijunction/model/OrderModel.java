@@ -3,10 +3,21 @@ package com.example.dhobijunction.model;
 import com.google.firebase.firestore.ServerTimestamp;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 public class OrderModel implements Serializable {
+    String orderId;
+
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+    }
+
     String Name;
     String Email;
     String number;
