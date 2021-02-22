@@ -1,14 +1,20 @@
 package com.example.dhobijunction.activity;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.location.Geocoder;
+import android.location.Location;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.dhobijunction.R;
@@ -17,21 +23,27 @@ import com.example.dhobijunction.databinding.ActivityCheckOutBinding;
 import com.example.dhobijunction.model.CheckModel;
 import com.example.dhobijunction.model.OrderModel;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class Check_Out_Activity extends AppCompatActivity {
-Check_out_Adapter adapter;
+    Check_out_Adapter adapter;
     String[] time = new String[]{"9:00AM-10:00AM", "10:00AM-11:00AM", "11:00AM-12:00PM", "12:00PM-1:00PM", "1:00PM-2:00PM", "2:00PM-3:00PM", "3:00PM-4:00PM", "4:00PM-5:00PM", "5:00PM-6:00PM"};
     ActivityCheckOutBinding screen;
     SharedPreferences pref;
     String mobile = "";
-    String total="";
+    String total = "";
     List<CheckModel> list;
+    FusedLocationProviderClient fusedLocationProviderClient;
 
 
     @Override
@@ -40,10 +52,11 @@ Check_out_Adapter adapter;
         screen = ActivityCheckOutBinding.inflate(getLayoutInflater());
         setContentView(screen.getRoot());
 
-        total=getIntent().getStringExtra("total");
+        total = getIntent().getStringExtra("total");
         getSupportActionBar().hide();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         pref = getSharedPreferences("Users", 0);
         mobile = pref.getString("userMobile", "");
         List<String> timelist = new ArrayList<>(Arrays.asList(time));
@@ -52,39 +65,63 @@ Check_out_Adapter adapter;
         screen.tvCurrentLoction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (ActivityCompat.checkSelfPermission(Check_Out_Activity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(Check_Out_Activity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                    return;
+                } else {
+                    fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Location> task) {
+                            Location location = task.getResult();
+                            Geocoder geocoder = new Geocoder(Check_Out_Activity.this);
+                            try {
+                                screen.checkoutAddress.setText(geocoder.getFromLocation(location.getLatitude(),
+                                        location.getLongitude(), 1)
+                                        .get(0).getAddressLine(0));
 
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+                }
             }
         });
         screen.payment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String Name=screen.checkoutName.getText().toString().trim();
-                String Email=screen.checkoutEmail.getText().toString().trim();
-                String Phone=screen.checkoutMobilenumber.getText().toString().trim();
-                String Address=screen.checkoutAddress.getText().toString().trim();
+                String Name = screen.checkoutName.getText().toString().trim();
+                String Email = screen.checkoutEmail.getText().toString().trim();
+                String Phone = screen.checkoutMobilenumber.getText().toString().trim();
+                String Address = screen.checkoutAddress.getText().toString().trim();
 
-                if (TextUtils.isEmpty(Name)){
+                if (TextUtils.isEmpty(Name)) {
                     screen.checkoutName.setError("Enter Your Name");
 
                 }
-                if (TextUtils.isEmpty(Email)){
+                if (TextUtils.isEmpty(Email)) {
                     screen.checkoutEmail.setError("Enter Your Email");
 
                 }
-                if (TextUtils.isEmpty(Phone)){
+                if (TextUtils.isEmpty(Phone)) {
                     screen.checkoutMobilenumber.setError("Enter Your PhoneNumber");
 
                 }
-                if (TextUtils.isEmpty(Address)){
+                if (TextUtils.isEmpty(Address)) {
                     screen.checkoutAddress.setError("Enter Your Address");
 
                 }
-                if (Phone.length()<10){
+                if (Phone.length() < 10) {
                     screen.checkoutMobilenumber.setError("Phone Number Must be 10 number ");
 
 
-                }
-                else {
+                } else {
 
                     OrderModel model = new OrderModel();
                     model.setName(screen.checkoutName.getText().toString());
@@ -151,13 +188,13 @@ Check_out_Adapter adapter;
                 .setQuery(query, CheckModel.class).build();
 
 
-
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         screen.checkRecyclerview.setLayoutManager(linearLayoutManager);
-       adapter = new Check_out_Adapter(this, rvOptions, this);
-      screen.checkRecyclerview.setAdapter(adapter);
+        adapter = new Check_out_Adapter(this, rvOptions, this);
+        screen.checkRecyclerview.setAdapter(adapter);
 
     }
+
     @Override
     public void onStart() {
         super.onStart();
