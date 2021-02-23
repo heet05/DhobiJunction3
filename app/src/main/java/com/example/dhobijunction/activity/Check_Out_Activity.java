@@ -33,7 +33,9 @@ import com.google.firebase.firestore.Query;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Check_Out_Activity extends AppCompatActivity {
     Check_out_Adapter adapter;
@@ -43,6 +45,7 @@ public class Check_Out_Activity extends AppCompatActivity {
     String mobile = "";
     String total = "";
     List<CheckModel> list;
+
     FusedLocationProviderClient fusedLocationProviderClient;
 
 
@@ -122,39 +125,66 @@ public class Check_Out_Activity extends AppCompatActivity {
 
 
                 } else {
-
                     OrderModel model = new OrderModel();
                     model.setName(screen.checkoutName.getText().toString());
                     model.setEmail(screen.checkoutEmail.getText().toString());
                     model.setNumber(screen.checkoutMobilenumber.getText().toString());
                     model.setAddress(screen.checkoutAddress.getText().toString());
                     model.setTotal(total);
+                    model.setDeliverTime(screen.checkoutSpinner.getSelectedItem().toString());
                     model.setTimestamp(null);
+                    if (screen.radiogroup1.getCheckedRadioButtonId()== R.id.cash) {
+                        FirebaseFirestore.getInstance().collection("USERS")
+                                .document(mobile).collection("USERCART").addSnapshotListener((value, error) -> {
+                            if (value != null && !value.isEmpty()) {
+                                list = value.toObjects(CheckModel.class);
+                                model.setModelList(list);
+                                model.setPayMentMethod("Cash On Dlivery");
+                                FirebaseFirestore.getInstance().collection("USERS").document(mobile).collection("ORDERS")
+                                        .add(model).addOnSuccessListener(doc -> {
+                                    Map<String, Object> map = new HashMap<>();
+                                    map.put("orderId", doc.getId());
+                                    doc.update(map).addOnCompleteListener(task -> {
+                                        if (task.isSuccessful()) {
+                                            map.clear();
+                                            Toast.makeText(Check_Out_Activity.this, "Order Success", Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            Toast.makeText(Check_Out_Activity.this, "" + task.getException(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                                });
+                            }
+                            if (error != null) {
+                                Toast.makeText(Check_Out_Activity.this, "" + error.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                    if (screen.radiogroup1.getCheckedRadioButtonId()==R.id.online) {
 
 
-                    FirebaseFirestore.getInstance().collection("USERS")
-                            .document(mobile).collection("USERCART").addSnapshotListener((value, error) -> {
-                        if (value != null && !value.isEmpty()) {
-                            list = value.toObjects(CheckModel.class);
-                            model.setModelList(list);
+                        FirebaseFirestore.getInstance().collection("USERS")
+                                .document(mobile).collection("USERCART").addSnapshotListener((value, error) -> {
+                            if (value != null && !value.isEmpty()) {
+                                list = value.toObjects(CheckModel.class);
+                                model.setModelList(list);
+                                model.setPayMentMethod("OnlinePayment");
 
-
-                            Intent intent = new Intent(Check_Out_Activity.this, PaymentActivity.class);
-                            intent.putExtra("total", total);
-                            intent.putExtra("order", model);
+                                Intent intent = new Intent(Check_Out_Activity.this, PaymentActivity.class);
+                                intent.putExtra("total", total);
+                                intent.putExtra("order", model);
 //                                intent.putExtra("name",  screen.checkoutName.getText());
 //                                intent.putExtra("email", screen.checkoutEmail.getText());
 //                                intent.putExtra("number", screen.checkoutMobilenumber.getText());
 //                                intent.putExtra("Address",screen.checkoutAddress);
 //
-                            startActivity(intent);
-                        }
-                        if (error != null) {
-                            Toast.makeText(Check_Out_Activity.this, "" + error.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                                startActivity(intent);
+                            }
+                            if (error != null) {
+                                Toast.makeText(Check_Out_Activity.this, "" + error.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
 
-
+                    }
                 }
 //                FirebaseFirestore.getInstance().collection("USERS").document(pref.getString("userMobile", "")).collection("Order").add(model).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
 //                    @Override

@@ -166,7 +166,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/checkout_linearlayout1"
                         android:layout_marginHorizontal="20dp"
-                        android:orientation="horizontal"
+                        android:orientation="vertical"
                         android:padding="10dp"
                         android:weightSum="3">
 
@@ -179,15 +179,21 @@
                             android:textColor="@android:color/black"
                             android:textSize="18sp" />
 
-                        <TextView
-                            android:id="@+id/checkout_tv5"
+                        <RadioGroup
+                            android:id="@+id/radiogroup1"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="2"
-                            android:gravity="end"
-                            android:text="Please Select (>)"
-                            android:textColor="@android:color/holo_red_dark"
-                            android:textSize="12dp" />
+                            android:layout_height="wrap_content">
+                            <RadioButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/cash"
+                                android:text="Cash"/>
+                            <RadioButton
+                                android:id="@+id/online"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="OnlinePayment"/>
+                        </RadioGroup>
                     </LinearLayout>
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
@@ -237,6 +243,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/holo_blue_light"
-        android:text="PAYMENT"
+        android:text="PLACE ORDER"
         app:layout_constraintBottom_toBottomOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

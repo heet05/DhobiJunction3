@@ -3,7 +3,6 @@ package com.example.dhobijunction.model;
 import com.google.firebase.firestore.ServerTimestamp;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -25,6 +24,24 @@ public class OrderModel implements Serializable {
     String Total;
     @ServerTimestamp
     Date timestamp;
+    String deliverTime;
+    String PayMentMethod;
+
+    public String getPayMentMethod() {
+        return PayMentMethod;
+    }
+
+    public void setPayMentMethod(String payMentMethod) {
+        PayMentMethod = payMentMethod;
+    }
+
+    public String getDeliverTime() {
+        return deliverTime;
+    }
+
+    public void setDeliverTime(String deliverTime) {
+        this.deliverTime = deliverTime;
+    }
 
     public Date getTimestamp() {
         return timestamp;
