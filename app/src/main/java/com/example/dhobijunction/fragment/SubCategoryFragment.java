@@ -45,7 +45,7 @@ public class SubCategoryFragment extends Fragment {
         tabLayout=view.findViewById(R.id.tl);
 
         FirebaseFirestore.getInstance().collection("subcategory")
-                .whereEqualTo("Cid",model.getCid()).orderBy("Sid").addSnapshotListener(new EventListener<QuerySnapshot>() {
+                .whereEqualTo("cid",model.getCid()).orderBy("sid").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
 

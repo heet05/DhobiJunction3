@@ -2,7 +2,7 @@ package com.example.dhobijunction.model;
 
 public class ProModel {
 
-    String Pid,Image,KgGm,Price,Sid,Title;
+    String Pid,Image,KgGm,Price,sid,Title;
 
     public String getPid() {
         return Pid;
@@ -37,11 +37,11 @@ public class ProModel {
     }
 
     public String getSid() {
-        return Sid;
+        return sid;
     }
 
     public void setSid(String sid) {
-        Sid = sid;
+        sid = sid;
     }
 
     public String getTitle() {

@@ -1,8 +1,13 @@
-package com.example.dhobijunction.model;
+package com.example.admin.Model;
 
 public class SubCategoryModel {
-String sid;
-String TITLE;
+    public String getCid() {
+        return cid;
+    }
+
+    public void setCid(String cid) {
+        this.cid = cid;
+    }
 
     public String getSid() {
         return sid;
@@ -19,4 +24,8 @@ String TITLE;
     public void setTITLE(String TITLE) {
         this.TITLE = TITLE;
     }
+
+    String cid;
+    String sid;
+    String TITLE;
 }

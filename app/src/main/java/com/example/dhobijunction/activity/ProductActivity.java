@@ -40,7 +40,7 @@ public class ProductActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.viewpager);
 
         FirebaseFirestore.getInstance().collection("category")
-                .orderBy("Cid", Query.Direction.ASCENDING).addSnapshotListener(new EventListener<QuerySnapshot>() {
+                .orderBy("cid", Query.Direction.ASCENDING).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
 

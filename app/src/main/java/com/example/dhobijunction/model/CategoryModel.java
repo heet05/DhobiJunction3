@@ -4,23 +4,23 @@ public class CategoryModel {
 
 
 
-        String Cid;
+        String cid;
 
-        String TITLE;
+        String title;
 
         public String getCid() {
-                return Cid;
+                return cid;
         }
 
         public void setCid(String cid) {
-                Cid = cid;
+                this.cid = cid;
         }
 
-        public String getTITLE() {
-                return TITLE;
+        public String getTitle() {
+                return title;
         }
 
-        public void setTITLE(String TITLE) {
-                this.TITLE = TITLE;
+        public void setTitle(String title) {
+                this.title = title;
         }
 }

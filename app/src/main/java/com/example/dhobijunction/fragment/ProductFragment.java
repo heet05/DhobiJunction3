@@ -53,7 +53,7 @@ public class ProductFragment extends Fragment implements OnAddToCartListner {
         preferences = getActivity().getSharedPreferences("Users", 0);
 
         Query query = FirebaseFirestore.getInstance().collection("product")
-                .whereEqualTo("Sid", model.getSid());
+                .whereEqualTo("sid", model.getSid());
 
         FirestoreRecyclerOptions<ProModel> rvOptions = new FirestoreRecyclerOptions.Builder<ProModel>()
                 .setQuery(query, ProModel.class).build();

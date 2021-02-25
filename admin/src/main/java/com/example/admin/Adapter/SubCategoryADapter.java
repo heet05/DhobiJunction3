@@ -12,9 +12,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.admin.Model.SubCategoryModel;
 import com.example.admin.Model.categoryModel;
 import com.example.admin.R;
-import com.example.admin.activity.CatagroyActivity;
+import com.example.admin.activity.Sub_CagtegoryActivity;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -23,24 +24,24 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.HashMap;
 import java.util.List;
 
-public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder> {
-    List<categoryModel>list;
-    Context context;
-    public CategoryAdapter(CatagroyActivity catagroyActivity, List<categoryModel> list) {
-    this.context=catagroyActivity;
-    this.list=list;
+public class SubCategoryADapter  extends RecyclerView.Adapter<SubCategoryADapter.VieWholder> {
+Context context;
+List<SubCategoryModel> modelList;
+    public SubCategoryADapter(Sub_CagtegoryActivity sub_cagtegoryActivity, List<SubCategoryModel> modelList) {
+    this.context=sub_cagtegoryActivity;
+    this.modelList=modelList;
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-      View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.category_item,parent,false);
-        return new ViewHolder(view);
+    public VieWholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v= LayoutInflater.from(context).inflate(R.layout.subcategory_item,parent,false);
+        return new VieWholder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.textView.setText(list.get(position).getTITLE());
+    public void onBindViewHolder(@NonNull VieWholder holder, int position) {
+        holder.textView.setText(modelList.get(position).getTITLE());
         holder.ib1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,9 +55,9 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
             @Override
             public void onClick(View v) {
 
-                HashMap<String,Object>map=new HashMap<>();
+                HashMap<String,Object> map=new HashMap<>();
                 map.put("TITLE",holder.editText.getText().toString());
-                FirebaseFirestore.getInstance().collection("category").whereEqualTo("cid",list.get(position).getCid()).addSnapshotListener(new EventListener<QuerySnapshot>() {
+                FirebaseFirestore.getInstance().collection("subcategory").whereEqualTo("sid",modelList.get(position).getSid()).addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
 
@@ -67,7 +68,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
                             holder.editText.setVisibility(View.GONE);
                             holder.textView.setVisibility(View.VISIBLE);
                             holder.ib2.setVisibility(View.GONE);
-                           value.getDocuments().get(0).getReference().update(map);
+                            value.getDocuments().get(0).getReference().update(map);
                         }
                     }
                 });
@@ -76,8 +77,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         holder.ib3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              categoryModel categoryModel=new categoryModel();
-                FirebaseFirestore.getInstance().collection("category").whereEqualTo("cid",list.get(position).getCid()).addSnapshotListener(new EventListener<QuerySnapshot>() {
+                categoryModel categoryModel=new categoryModel();
+                FirebaseFirestore.getInstance().collection("subcategory").whereEqualTo("sid",modelList.get(position).getSid()).addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                         if (value !=null&& !value.isEmpty()){
@@ -93,15 +94,14 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return modelList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class VieWholder extends RecyclerView.ViewHolder {
         TextView textView;
-        EditText  editText;
+        EditText editText;
         ImageButton ib1,ib2,ib3;
-        public ViewHolder(@NonNull View itemView)
-        {
+        public VieWholder(@NonNull View itemView) {
             super(itemView);
             textView=itemView.findViewById(R.id.t1);
             editText=itemView.findViewById(R.id.e1);
