@@ -39,7 +39,7 @@ public class Check_out_Adapter extends FirestoreRecyclerAdapter<CheckModel,Check
     protected void onBindViewHolder(@NonNull CheckViewHolder holder, int position, @NonNull CheckModel model) {
         holder.textView1.setText(model.getTitle());
         Glide.with(check_out_activity).load(model.getImage()).into(holder.imageView);
-        holder.textView2.setText(" ₹ " + model.getPrice());
+        holder.textView2.setText(" ₹ " + model.getTotal());
 
 
     }

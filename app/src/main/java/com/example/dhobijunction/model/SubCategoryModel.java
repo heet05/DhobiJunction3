@@ -2,7 +2,7 @@ package com.example.dhobijunction.model;
 
 public class SubCategoryModel {
 String sid;
-String TITLE;
+String title;
 
     public String getSid() {
         return sid;
@@ -13,10 +13,10 @@ String TITLE;
     }
 
     public String getTITLE() {
-        return TITLE;
+        return title;
     }
 
     public void setTITLE(String TITLE) {
-        this.TITLE = TITLE;
+        this.title = TITLE;
     }
 }

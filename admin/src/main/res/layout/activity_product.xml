@@ -5,14 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.ProductActivity">
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/pr_sp"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <Button
-        android:id="@+id/b1"
+        android:id="@+id/bt1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="SelectFrom"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/pr_sp" />
 
 
     <ImageView
@@ -20,11 +25,11 @@
         android:layout_width="@dimen/_100sdp"
         android:layout_height="@dimen/_100sdp"
         android:layout_margin="@dimen/_10sdp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:background="@mipmap/ic_launcher"
-        app:layout_constraintStart_toEndOf="@+id/b1"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintStart_toEndOf="@+id/bt1"
+        app:layout_constraintTop_toBottomOf="@id/pr_sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -48,7 +53,7 @@
             android:textSize="@dimen/_20sdp" />
 
         <EditText
-            android:id="@+id/e1"
+            android:id="@+id/ed1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_10sdp" />
@@ -68,7 +73,7 @@
                 android:textSize="@dimen/_20sdp" />
 
             <EditText
-                android:id="@+id/e2"
+                android:id="@+id/ed2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/_10sdp" />
@@ -88,7 +93,7 @@
                 android:textSize="@dimen/_20sdp" />
 
             <EditText
-                android:id="@+id/e3"
+                android:id="@+id/ed3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/_10sdp" />
@@ -99,7 +104,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="AddProduct"
-            android:id="@+id/b2"/>
+            android:id="@+id/bt2"/>
 
     </LinearLayout>
 

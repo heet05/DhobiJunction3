@@ -36,7 +36,6 @@ public class CatagroyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_catagroy);
         e1 = findViewById(R.id.e1);
-        e2 = findViewById(R.id.e2);
         rv = findViewById(R.id.rv);
         b1 = findViewById(R.id.b1);
 
