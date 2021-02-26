@@ -42,6 +42,11 @@ public class OrderAdapter extends FirestoreRecyclerAdapter<orderModel,OrderAdapt
 
         holder.textView.setText(model.getTotal());
         holder.date.setText(sdf.format(model.getTimestamp()));
+        holder.email.setText(model.getEmail());
+        holder.address.setText(model.getAddress());
+        holder.payment.setText(model.getPayMentMethod());
+        holder.number.setText(model.getNumber());
+        holder.name.setText(model.getName());
 
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,11 +66,15 @@ public class OrderAdapter extends FirestoreRecyclerAdapter<orderModel,OrderAdapt
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView textView, date;
+        TextView textView, date,name,number,address,email,payment;
         LinearLayout linearLayout;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
+            name=itemView.findViewById(R.id.Order_name);
+            number=itemView.findViewById(R.id.Order_number);
+            payment=itemView.findViewById(R.id.Order_payment);
+            address=itemView.findViewById(R.id.Order_address);
+            email=itemView.findViewById(R.id.Order_email);
             date = itemView.findViewById(R.id.Order_date);
             textView = itemView.findViewById(R.id.Order_total);
             linearLayout = itemView.findViewById(R.id.Order_click);

@@ -4,6 +4,7 @@ import com.google.firebase.firestore.ServerTimestamp;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 public class orderModel implements Serializable {
 
@@ -12,6 +13,17 @@ public class orderModel implements Serializable {
     String number;
     String Address;
     String Total;
+    List<checkOutModel>modelList;
+
+
+    public List<checkOutModel> getModelList() {
+        return modelList;
+    }
+
+    public void setModelList(List<checkOutModel> modelList) {
+        this.modelList = modelList;
+    }
+
     @ServerTimestamp
     Date timestamp;
     String deliverTime;

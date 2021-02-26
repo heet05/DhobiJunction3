@@ -4,9 +4,9 @@ public class CartModel {
     String image;
     String price;
     String title;
-    String sId;
+    String sid;
     String qty;
-    String pId;
+    String pid;
     String cartItemId;
     String total;
 
@@ -27,20 +27,20 @@ public class CartModel {
     }
 
     public String getpId() {
-        return pId;
+        return pid;
     }
 
     public void setpId(String pId) {
-        this.pId = pId;
+        this.pid = pId;
     }
 
     public CartModel(String image, String price, String title, String sId, String qty, String pId,String cartItemId,String total) {
         this.image = image;
         this.price = price;
         this.title = title;
-        this.sId = sId;
+        this.sid = sId;
         this.qty = qty;
-        this.pId = pId;
+        this.pid = pId;
         this.cartItemId = cartItemId;
         this.total = total;
     }
@@ -78,11 +78,11 @@ public class CartModel {
     }
 
     public String getsId() {
-        return sId;
+        return sid;
     }
 
     public void setsId(String sId) {
-        this.sId = sId;
+        this.sid = sId;
     }
     public CartModel(){}
 }

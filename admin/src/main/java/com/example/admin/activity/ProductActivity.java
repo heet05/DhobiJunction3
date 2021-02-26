@@ -98,71 +98,68 @@ Spinner spinner;
 
                 for (int i=0;i<list.size();i++){
                     if (list.get(i).getTITLE()==spinner.getSelectedItem().toString()){
-                        model.setSid(list.get(i).getCid());
+                        model.setSid(list.get(i).getSid());
                         model.setTitle(ed1.getText().toString());
                         model.setPrice(ed2.getText().toString());
                         model.setQty(ed3.getText().toString());
+                        final ProgressDialog progressDialog = new ProgressDialog(ProductActivity.this);
+                        progressDialog.setTitle("Uploading...");
+                        progressDialog.show();
 
 
-                        FirebaseFirestore.getInstance().collection("product").add(model).addOnSuccessListener(documentReference -> {
-                            String docId = documentReference.getId();
-                            Map<String, Object> map = new HashMap<>();
-                            map.put("pid", docId);
-                            documentReference.update(map).addOnSuccessListener(aVoid -> {
-                                if(filePath != null)
-                                {
-                                    final ProgressDialog progressDialog = new ProgressDialog(ProductActivity.this);
-                                    progressDialog.setTitle("Uploading...");
-                                    progressDialog.show();
+                        StorageReference ref = storageReference.child("images/"+ UUID.randomUUID().toString());
+                        ref.putFile(filePath)
+                                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                    @Override
+                                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                        ref.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Uri> task) {
+                                                model.setImage(  task.getResult().toString());
 
-                                    StorageReference ref = storageReference.child("images/"+ UUID.randomUUID().toString());
-                                    ref.putFile(filePath)
-                                            .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                                                @Override
-                                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                                FirebaseFirestore.getInstance().collection("product").add(model).addOnSuccessListener(documentReference -> {
+                                                    String docId = documentReference.getId();
+                                                    Map<String, Object> map = new HashMap<>();
+                                                    map.put("pid", docId);
+                                                    documentReference.update(map).addOnSuccessListener(aVoid -> {
+                                                        if(filePath != null)
+                                                        {
+                                                            final ProgressDialog progressDialog = new ProgressDialog(ProductActivity.this);
+                                                            progressDialog.setTitle("Uploading...");
+                                                            progressDialog.show();
 
 
-                                                    // Continue with the task to get the download URL
-
-                                                    progressDialog.dismiss();
-
-                                                    Toast.makeText(ProductActivity.this, "success", Toast.LENGTH_SHORT).show();
-                                                    Toast.makeText(ProductActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
-                                                }
-                                            }).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                                            if (task.isSuccessful()) {
-                                                UploadTask.TaskSnapshot downloadUri = task.getResult();
-                                                model.setImage(downloadUri.toString());
-                                                Toast.makeText(ProductActivity.this, "Success uplod Image in firebase", Toast.LENGTH_SHORT).show();
-                                            } else {
-                                                // Handle failures
-                                                // ...
+                                                        }
+                                                    });
+                                                });
                                             }
-                                        }
-                                    })
-                                            .addOnFailureListener(new OnFailureListener() {
-                                                @Override
-                                                public void onFailure(@NonNull Exception e) {
-                                                    progressDialog.dismiss();
-                                                    Toast.makeText(ProductActivity.this, "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
-                                                }
-                                            })
-                                            .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                                                @Override
-                                                public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-                                                    double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
-                                                            .getTotalByteCount());
-                                                    progressDialog.setMessage("Uploaded "+(int)progress+"%");
-                                                }
-                                            });
+                                        });
+
+                                        // Continue with the task to get the download URL
+
+                                        progressDialog.dismiss();
+
+                                        Toast.makeText(ProductActivity.this, "success", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(ProductActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        progressDialog.dismiss();
+                                        Toast.makeText(ProductActivity.this, "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                })
+                                .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                                    @Override
+                                    public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                                        double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
+                                                .getTotalByteCount());
+                                        progressDialog.setMessage("Uploaded "+(int)progress+"%");
+                                    }
+                                });
 
 
-
-                            }
-                            });
-                        });
                     }
                 }
             }

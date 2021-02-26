@@ -11,6 +11,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.admin.Adapter.orderDetaliAdapter;
 import com.example.admin.Model.orderModel;
 import com.example.admin.R;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 
 public class OrderdetailActivity extends AppCompatActivity {
     RecyclerView recyclerView;
@@ -30,13 +33,24 @@ public class OrderdetailActivity extends AppCompatActivity {
         textView = findViewById(R.id.Order_detail_total);
 
         Model = (orderModel) getIntent().getSerializableExtra("Model");
-        pref = getSharedPreferences("Users", 0);
 
-        mobile = pref.getString("userMobile", "");
         textView.setText(Model.getTotal());
-
-        adapter = new orderDetaliAdapter(this);
+        Query query = FirebaseFirestore.getInstance().collectionGroup("ORDERS");
+        FirestoreRecyclerOptions<orderModel> rvOptions = new FirestoreRecyclerOptions.Builder<orderModel>()
+                .setQuery(query, orderModel.class).build();
+        adapter = new orderDetaliAdapter(this,rvOptions,this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        adapter.startListening();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        adapter.stopListening();
     }
 }

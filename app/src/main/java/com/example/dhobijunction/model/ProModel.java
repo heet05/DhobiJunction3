@@ -2,38 +2,38 @@ package com.example.dhobijunction.model;
 
 public class ProModel {
 
-    String Pid,Image,KgGm,Price,sid,Title;
+    String pid,image,qty,price,sid,title;
 
     public String getPid() {
-        return Pid;
+        return pid;
     }
 
     public void setPid(String pid) {
-        Pid = pid;
+        this.pid = pid;
     }
 
     public String getImage() {
-        return Image;
+        return image;
     }
 
     public void setImage(String image) {
-        Image = image;
+        this.image = image;
     }
 
-    public String getKgGm() {
-        return KgGm;
+    public String getQty() {
+        return qty;
     }
 
-    public void setKgGm(String kgGm) {
-        KgGm = kgGm;
+    public void setQty(String qty) {
+        this.qty = qty;
     }
 
     public String getPrice() {
-        return Price;
+        return price;
     }
 
     public void setPrice(String price) {
-        Price = price;
+        this.price = price;
     }
 
     public String getSid() {
@@ -41,14 +41,14 @@ public class ProModel {
     }
 
     public void setSid(String sid) {
-        sid = sid;
+        this.sid = sid;
     }
 
     public String getTitle() {
-        return Title;
+        return title;
     }
 
     public void setTitle(String title) {
-        Title = title;
+        this.title = title;
     }
 }

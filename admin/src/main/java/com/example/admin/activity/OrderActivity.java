@@ -25,12 +25,10 @@ public class OrderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
         recyclerView=findViewById(R.id.rv);
-        pref = getSharedPreferences("Users", 0);
-        mobile = pref.getString("userMobile", "");
 
 
-        Query query = FirebaseFirestore.getInstance().collection("USERS")
-                .document(mobile).collection("ORDERS");
+
+        Query query = FirebaseFirestore.getInstance().collectionGroup("ORDERS");
         FirestoreRecyclerOptions<orderModel> rvOptions = new FirestoreRecyclerOptions.Builder<orderModel>()
                 .setQuery(query, orderModel.class).build();
 
@@ -40,5 +38,17 @@ public class OrderActivity extends AppCompatActivity {
         adapter = new OrderAdapter(this, rvOptions, this);
         recyclerView.setAdapter(adapter);
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        adapter.startListening();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        adapter.stopListening();
     }
 }
