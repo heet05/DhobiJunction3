@@ -33,7 +33,7 @@ public class OrderAdapter extends FirestoreRecyclerAdapter<orderModel,OrderAdapt
 
     public OrderAdapter(OrderActivity orderActivity, @NonNull FirestoreRecyclerOptions<orderModel> options, OrderActivity activity) {
         super(options);
-        this.context=activity;
+        this.context=orderActivity;
     }
 
     @Override
@@ -51,8 +51,8 @@ public class OrderAdapter extends FirestoreRecyclerAdapter<orderModel,OrderAdapt
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, OrderdetailActivity.class);
-                intent.putExtra("Model", model);
+                Intent intent =new Intent(context,OrderdetailActivity.class);
+                intent.putExtra("Model",model);
                 context.startActivity(intent);
             }
         });

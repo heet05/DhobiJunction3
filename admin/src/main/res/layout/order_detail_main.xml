@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
@@ -20,7 +20,7 @@
             android:orientation="horizontal">
 
             <RelativeLayout
-                android:padding="10dp"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -54,8 +54,8 @@
                     android:id="@+id/quantity"
                     android:textSize="18sp"
                     android:layout_toRightOf="@id/title1"
-                    android:hint="Quantity"
-                    android:layout_marginLeft="80dp"
+                    android:hint="Qty="
+                    android:layout_marginLeft="40dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 
@@ -64,7 +64,7 @@
                     android:textSize="18sp"
                     android:layout_toRightOf="@id/quantity"
                     android:text="qty"
-                    android:layout_marginLeft="5dp"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 
@@ -73,7 +73,7 @@
                     android:hint="total"
                     android:textSize="18sp"
                     android:layout_below="@id/title1"
-                    android:layout_marginLeft="180dp"
+                    android:layout_marginLeft="150dp"
                     android:layout_toRightOf="@id/price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>

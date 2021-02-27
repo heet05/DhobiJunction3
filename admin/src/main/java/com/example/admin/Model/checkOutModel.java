@@ -1,6 +1,8 @@
 package com.example.admin.Model;
 
-public class checkOutModel {
+import java.io.Serializable;
+
+public class checkOutModel  implements Serializable {
     String image;
     String price;
     String title;
