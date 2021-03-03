@@ -37,6 +37,7 @@ public class ProductAdapter extends FirestoreRecyclerAdapter<ProModel, ProductAd
         // holder.product_kg_gm.setText(" Per " + list.get(position).getProduct_kg_gm());
         holder.product_total_price.setText(" ₹ " + model.getPrice());
         Glide.with(productFragment).load(model.getImage()).into(holder.product_image);
+        holder.product_number.setText(model.getQty());
 
         holder.product_remove.setOnClickListener(new View.OnClickListener() {
             @Override

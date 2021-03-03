@@ -46,6 +46,7 @@ public class OrderAdapter extends FirestoreRecyclerAdapter<orderModel,OrderAdapt
         holder.address.setText(model.getAddress());
         holder.payment.setText(model.getPayMentMethod());
         holder.number.setText(model.getNumber());
+
         holder.name.setText(model.getName());
 
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {

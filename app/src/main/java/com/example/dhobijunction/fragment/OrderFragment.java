@@ -38,8 +38,9 @@ public class OrderFragment extends Fragment {
 
         Query query = FirebaseFirestore.getInstance().collection("USERS")
                 .document(mobile).collection("ORDERS");
-        FirestoreRecyclerOptions<OrderModel> rvOptions = new FirestoreRecyclerOptions.Builder<OrderModel>()
-                .setQuery(query, OrderModel.class).build();
+        FirestoreRecyclerOptions<OrderModel> rvOptions=new FirestoreRecyclerOptions.Builder<OrderModel>().setQuery(query,OrderModel.class).build();
+//        FirestoreRecyclerOptions<OrderModel> rvOptions = new FirestoreRecyclerOptions.Builder<OrderModel>()
+//                .setQuery(query, OrderModel.class).build();
 
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());

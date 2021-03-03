@@ -127,7 +127,7 @@ Spinner spinner;
                                                             final ProgressDialog progressDialog = new ProgressDialog(ProductActivity.this);
                                                             progressDialog.setTitle("Uploading...");
                                                             progressDialog.show();
-
+                                                            progressDialog.dismiss();
 
                                                         }
                                                     });
@@ -155,6 +155,7 @@ Spinner spinner;
                                     public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
                                         double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
                                                 .getTotalByteCount());
+
                                         progressDialog.setMessage("Uploaded "+(int)progress+"%");
                                     }
                                 });

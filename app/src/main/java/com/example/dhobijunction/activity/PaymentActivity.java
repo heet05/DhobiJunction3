@@ -123,6 +123,7 @@ public class PaymentActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 map.clear();
                                 Toast.makeText(this, "Order Success", Toast.LENGTH_SHORT).show();
+                                finish();
                             } else {
                                 Toast.makeText(this, "" + task.getException(), Toast.LENGTH_SHORT).show();
                             }

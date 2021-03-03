@@ -9,6 +9,15 @@ import java.util.List;
 public class orderModel implements Serializable {
 
     String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     String Email;
     String number;
     String Address;
@@ -30,13 +39,7 @@ public class orderModel implements Serializable {
     String orderId;
 
 
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        name = name;
-    }
 
     public String getEmail() {
         return Email;
