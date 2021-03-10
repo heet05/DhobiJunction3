@@ -4,19 +4,19 @@ apply plugin: 'kotlin-android'
 android {
     signingConfigs {
         release {
-            storeFile file('E:\\heet.jks')
+            storeFile file('C:\\Users\\heetv\\heet\\heet.jks')
             storePassword 'heet@1521'
             keyPassword 'heet@1521'
             keyAlias 'key0'
         }
     }
-    compileSdkVersion 29
-    buildToolsVersion "30.0.1"
+    compileSdkVersion 30
+    buildToolsVersion "30.0.0"
 
     defaultConfig {
         applicationId "com.example.dhobijunction"
         minSdkVersion 26
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
         multiDexEnabled true

@@ -17,7 +17,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.admin.Adapter.productAdapter;
 import com.example.admin.Model.ProductModel;
 import com.example.admin.Model.SubCategoryModel;
 import com.example.admin.R;
@@ -46,12 +49,14 @@ Button b1,b2;
 ImageView imageView;
 EditText ed1,ed2,ed3;
 Spinner spinner;
+    productAdapter adapter;
     Uri filePath;
     ProductModel model;
     private final int PICK_IMAGE_REQUEST = 71;
     List<ProductModel> modelList;
     List<SubCategoryModel> list;
     FirebaseStorage storage;
+    RecyclerView recyclerView;
     StorageReference storageReference;
 
     List<String> subcategoryList=new ArrayList<>();
@@ -66,9 +71,25 @@ Spinner spinner;
         ed1=findViewById(R.id.ed1);
         ed2=findViewById(R.id.ed2);
         ed3=findViewById(R.id.ed3);
+        recyclerView=findViewById(R.id.rv);
         imageView=findViewById(R.id.imageView);
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
+
+                FirebaseFirestore.getInstance().collection("product").addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                        if (value != null && !value.isEmpty()) {
+                            modelList = value.toObjects(ProductModel.class);
+                            adapter = new productAdapter(ProductActivity.this, modelList);
+                            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(ProductActivity.this);
+                            recyclerView.setAdapter(adapter);
+                            recyclerView.setLayoutManager(linearLayoutManager);
+
+                        }
+                    }
+                });
+
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
