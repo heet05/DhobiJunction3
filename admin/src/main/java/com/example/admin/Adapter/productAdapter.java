@@ -65,6 +65,7 @@ public class productAdapter   extends RecyclerView.Adapter<productAdapter.Viewho
                 map.put("price",holder.pricetext.getText().toString());
                 FirebaseFirestore.getInstance().collection("product").whereEqualTo("pid",modelList.get(position).getPid()).addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
+
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
 
 
