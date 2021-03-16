@@ -76,6 +76,8 @@ Spinner spinner;
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
 
+
+
                 FirebaseFirestore.getInstance().collection("product").addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
@@ -89,6 +91,8 @@ Spinner spinner;
                         }
                     }
                 });
+        
+
 
         b1.setOnClickListener(new View.OnClickListener() {
             @Override

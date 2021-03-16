@@ -1,6 +1,7 @@
 package com.example.admin.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -9,9 +10,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.admin.Adapter.DeliveryboyAdapter;
+import com.example.admin.Adapter.OrderAdapter;
 import com.example.admin.Model.categoryModel;
+import com.example.admin.Model.orderModel;
 import com.example.admin.R;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,6 +27,7 @@ public class DeliveryBoyActivity extends AppCompatActivity {
     Button b1;
     DeliveryModel model;
     RecyclerView rv;
+    DeliveryboyAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,5 +62,26 @@ public class DeliveryBoyActivity extends AppCompatActivity {
                 });
             }
         });
+        Query query = FirebaseFirestore.getInstance().collectionGroup("deliveryboy");
+        FirestoreRecyclerOptions<DeliveryModel> rvOptions = new FirestoreRecyclerOptions.Builder<DeliveryModel>()
+                .setQuery(query, DeliveryModel.class).build();
+
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        rv.setLayoutManager(linearLayoutManager);
+        adapter = new DeliveryboyAdapter(this, rvOptions, this);
+        rv.setAdapter(adapter);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        adapter.startListening();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        adapter.stopListening();
     }
 }

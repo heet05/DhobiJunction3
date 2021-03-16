@@ -12,6 +12,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/Order_detail_rv"/>
 
+
+
+
     <TextView
         android:id="@+id/order_detail_total1"
         android:layout_width="0dp"
