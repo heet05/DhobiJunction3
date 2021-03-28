@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -45,6 +46,7 @@ public class OrderDetailActivity extends AppCompatActivity {
                             @Override
                             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                                 value.getDocuments().get(0).getReference().delete();
+                                Toast.makeText(OrderDetailActivity.this, "Order Has been Cancel", Toast.LENGTH_SHORT).show();
                                 finish();
                             }
                         });
