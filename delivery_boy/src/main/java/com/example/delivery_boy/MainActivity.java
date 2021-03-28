@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,9 +19,13 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.tuyenmonkey.mkloader.MKLoader;
 
+import java.util.Collections;
+
 public class MainActivity extends AppCompatActivity {
     EditText e1,e2;
     Button b1;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
     MKLoader loader;
 
 
@@ -33,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
         b1=findViewById(R.id.login_btn);
         loader=findViewById(R.id.loader);
 
+        sharedPreferences=getSharedPreferences("deliveryBoy",MODE_PRIVATE);
+        editor=sharedPreferences.edit();
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,8 +60,13 @@ public class MainActivity extends AppCompatActivity {
                                 if (a.equalsIgnoreCase(a1)& b.equalsIgnoreCase(b1)){
                                     Intent intent=new Intent(MainActivity.this,homeActivity.class);
                                     startActivity(intent);
+                                    editor.putString("email",a);
+                                    editor.putString("did",doc.getString("did"));
+                                    editor.putString("phone",doc.getString("phone")) ;
+                                    editor.apply();
                                     Toast.makeText(MainActivity.this, "Login SuccessFull", Toast.LENGTH_SHORT).show();
                                     finish();
+
                                 }
                                 else {
                                     Toast.makeText(MainActivity.this, "CanNot login ,Incorrect Email and Password", Toast.LENGTH_SHORT).show();
