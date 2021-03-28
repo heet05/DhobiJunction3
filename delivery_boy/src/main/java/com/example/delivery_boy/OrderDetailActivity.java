@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -25,7 +27,8 @@ public class OrderDetailActivity extends AppCompatActivity {
     OrderModel Model;
     String mobile = "";
     TextView textView;
-    Button cancelorder;
+    Button cancelorder,trakorder;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +36,7 @@ public class OrderDetailActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.Order_detail_rv);
         cancelorder = findViewById(R.id.order_detail_button1);
         textView = findViewById(R.id.Order_detail_total);
+        trakorder=findViewById(R.id.order_detail_button2);
         Model = (OrderModel) getIntent().getSerializableExtra("Model");
         pref=getSharedPreferences("deliveryBoy",MODE_PRIVATE);
         cancelorder.setOnClickListener(new View.OnClickListener() {
@@ -55,9 +59,27 @@ public class OrderDetailActivity extends AppCompatActivity {
                 });
             }
         });
+        trakorder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              String Address=  Model.getAddress();
+              DisplayTrack(Address);
+
+            }
+        });
         textView.setText(Model.getTotal());
         adapter = new OrderDetailAdapter(this, Model.getModelList());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    private void DisplayTrack(String address) {
+
+            Uri uri=Uri.parse("https://www.google.co.in/maps/dir/" + address+ "/");
+            Intent intent=new Intent(Intent.ACTION_VIEW,uri);
+            intent.setPackage("com.google.android.apps.maps");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+
     }
 }
