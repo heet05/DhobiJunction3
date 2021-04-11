@@ -1,6 +1,7 @@
 package com.example.dhobijunction.adapter;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,23 +12,28 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dhobijunction.R;
 import com.example.dhobijunction.activity.OffersActivity;
-import com.example.dhobijunction.model.offerModle;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.payumoney.core.entity.PaymentEntity;
-import com.payumoney.sdkui.presenter.fragmentPresenter.IRecyclerViewOnItemClickListener;
-import com.payumoney.sdkui.ui.adapters.RecyclerViewAdapter;
+import com.example.dhobijunction.model.OfferModel;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
-import java.util.List;
-
-public class OfferAdapter extends RecyclerView.Adapter<OfferAdapter.ViewHolder> {
+public class OfferAdapter extends FirestoreRecyclerAdapter<OfferModel, OfferAdapter.ViewHolder> {
 Context context;
-com.example.dhobijunction.model.offerModle offerModle;
+SharedPreferences sharedPreferences;
 
-    public OfferAdapter(OffersActivity offersActivity) {
-        this.context=offersActivity;
+    public OfferAdapter(OffersActivity offersActivity, FirestoreRecyclerOptions<OfferModel> rvOptions, OffersActivity offersActivity1) {
+        super(rvOptions);
+       this.context=offersActivity;
+    }
+
+
+    @Override
+    protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull OfferModel model) {
+        holder.title.setText(model.getTitle());
+        holder.code.setText(model.getCode());
+        holder.price.setText(model.getPrice());
+        sharedPreferences.getString("code",model.getCode());
+        holder.date.setText(model.getDate());
     }
 
     @NonNull
@@ -37,34 +43,14 @@ com.example.dhobijunction.model.offerModle offerModle;
         return new ViewHolder(view);
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        FirebaseFirestore.getInstance().collection("offer").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                holder.title.setText(offerModle.getTitle());
-                holder.code.setText(offerModle.getCode());
-                holder.exdate.setText(offerModle.getDate());
-                holder.price.setText(offerModle.getPrice());
-
-            }
-        });
-
-    }
-
-    @Override
-    public int getItemCount() {
-        return 0;
-    }
-
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView title,price,code,exdate;
+        TextView  title,code,price,date;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            title=itemView.findViewById(R.id.offer_title);
+        title=itemView.findViewById(R.id.offer_title);
+        code=itemView.findViewById(R.id.offer_code);
             price=itemView.findViewById(R.id.offer_price);
-            code=itemView.findViewById(R.id.offer_code);
-            exdate=itemView.findViewById(R.id.offer_exdate);
+            date=itemView.findViewById(R.id.offer_exdate);
         }
     }
 }

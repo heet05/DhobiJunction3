@@ -1,6 +1,6 @@
 package com.example.dhobijunction.model;
 
-public class offerModle {
+public class OfferModel {
     String title,code,date,price,offerid;
 
     public String getTitle() {
