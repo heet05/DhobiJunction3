@@ -65,10 +65,32 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/cart_Rl2"
-        android:layout_above="@id/cart_Ll">
+        android:layout_above="@id/Cart_promocode">
 
     </androidx.recyclerview.widget.RecyclerView>
-
+<LinearLayout
+    android:orientation="horizontal"
+    android:padding="@dimen/_10sdp"
+    android:id="@+id/Cart_promocode"
+    android:weightSum="3"
+    android:layout_above="@id/cart_Ll"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <EditText
+        android:id="@+id/cart_epromo"
+        android:hint="Apply PromoCode"
+        android:layout_margin="@dimen/_10sdp"
+        android:layout_weight="2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/cart_bpromo"
+        android:layout_weight="1"
+        android:layout_margin="@dimen/_10sdp"
+        android:background="@drawable/ic_baseline_send_24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</LinearLayout>
     <LinearLayout
         android:layout_alignParentBottom="true"
         android:padding="5dp"

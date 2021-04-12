@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +23,7 @@ import com.example.dhobijunction.activity.OffersActivity;
 import com.example.dhobijunction.adapter.CartAdapter;
 import com.example.dhobijunction.adapter.OnQtyUpdate;
 import com.example.dhobijunction.model.CartModel;
+import com.example.dhobijunction.model.OfferModel;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -38,27 +40,40 @@ public class CartFragment extends Fragment implements OnQtyUpdate {
     RecyclerView recyclerView;
     CartAdapter adapter;
     CartModel model;
+    OfferModel offerModel;
+    SharedPreferences sharedPreferences;
     SharedPreferences pref;
     TextView t1, t6;
-    Button button1;
+    EditText promo;
+
+    Button button1,apply;
     String mobile = "";
+
     boolean isQtyUpdated;
+
+
+    public CartFragment(CartModel CartModel) {
+        this.model = CartModel;
+    }
 
     public CartFragment() {
 
     }
-    public CartFragment(CartModel CartModel) {
-        this.model = CartModel;
-    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         //return super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_cart, container, false);
         recyclerView = view.findViewById(R.id.cart_recyclerview);
+        promo =view.findViewById(R.id.cart_epromo);
+        apply=view.findViewById(R.id.cart_bpromo);
         t1 = view.findViewById(R.id.cart_tv1);
         t6 = view.findViewById(R.id.cart_tv6);
         button1=view.findViewById(R.id.cart_Bt1);
+       /* sharedPreferences=getContext().getSharedPreferences("Promocode",0);
+        String  code=sharedPreferences.getString("code","");*/
+
         pref = getContext().getSharedPreferences("Users", 0);
         mobile = pref.getString("userMobile", "");
         Query query = FirebaseFirestore.getInstance().collection("USERS")
@@ -71,6 +86,26 @@ public class CartFragment extends Fragment implements OnQtyUpdate {
         recyclerView.setLayoutManager(linearLayoutManager);
         adapter = new CartAdapter(getActivity(), rvOptions, this);
         recyclerView.setAdapter(adapter);
+
+
+        apply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseFirestore.getInstance().collection("offer").whereEqualTo("code",offerModel.getCode()).addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                        if (value !=null && !value.isEmpty()){
+                            Toast.makeText(getContext(), "code is vaild", Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            Toast.makeText(getContext(), "code is wrong", Toast.LENGTH_SHORT).show();
+
+                        }
+                    }
+                });
+            }
+        });
+
 
         t1.setOnClickListener(new View.OnClickListener() {
             @Override
