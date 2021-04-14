@@ -91,11 +91,18 @@ public class CartFragment extends Fragment implements OnQtyUpdate {
         apply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseFirestore.getInstance().collection("offer").whereEqualTo("code",offerModel.getCode()).addSnapshotListener(new EventListener<QuerySnapshot>() {
+                FirebaseFirestore.getInstance().collection("offer").whereEqualTo("code",promo.getText().toString().trim()).addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                         if (value !=null && !value.isEmpty()){
-                            Toast.makeText(getContext(), "code is vaild", Toast.LENGTH_SHORT).show();
+                            for (int i=0;i<value.size();i++) {
+                                OfferModel offerModel = value.getDocuments().get(i).toObject(OfferModel.class);
+
+                                Integer finalTotal = Integer.parseInt(t6.getText().toString()) - Integer.parseInt(offerModel.getPrice());
+                                t6.setText(String.valueOf(finalTotal));
+                                Toast.makeText(getContext(), "code is vaild", Toast.LENGTH_SHORT).show();
+
+                            }
                         }
                         else {
                             Toast.makeText(getContext(), "code is wrong", Toast.LENGTH_SHORT).show();
